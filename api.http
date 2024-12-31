@@ -1,0 +1,31 @@
+
+#get all books
+GET http://localhost:3001/books HTTP/1.1
+Content-Type: application/json
+
+###
+
+# Create a new book
+POST http://localhost:3001/books HTTP/1.1
+Content-Type: application/json
+
+{
+    "title": "Yogesh Rana"
+}
+
+###
+
+#Updated Book
+PUT http://localhost:3001/books/1 HTTP/1.1
+Content-Type: application/json
+
+{
+    "title": "Yogesh Shah"
+}
+
+###
+.
+#Delete Book 
+DELETE http://localhost:3001/books/1 HTTP/1.1
+Content-Type: application/json  
+
