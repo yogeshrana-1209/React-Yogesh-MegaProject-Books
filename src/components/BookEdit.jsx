@@ -2,6 +2,7 @@
 import { useState } from "react";
 //import BooksContext from "../context/books";
 import useBooksContext from "../hooks/use-books-context";
+import PropTypes from "prop-types";  // Import PropTypes
 
 function BookEdit({book, onSubmit}) {
 
@@ -27,7 +28,7 @@ function BookEdit({book, onSubmit}) {
             <h2 className="pt-3 pb-3">Edit Book</h2>
             <form className="text-black"
          onSubmit={handleSubmit} >
-            <label className="mr-2 text-black" for="title">Title : </label>
+            <label className="mr-2 text-black" >Title : </label>
             <input name="title" className="text-black mr-2 mb-5" value={title} onChange={handleChange} />
             <button className="btn btn-success">
                 Save
@@ -37,5 +38,14 @@ function BookEdit({book, onSubmit}) {
         
     );
 }
+
+// Prop validation
+BookEdit.propTypes = {
+    book: PropTypes.shape({
+        id: PropTypes.string.isRequired,
+        title: PropTypes.string.isRequired,
+    }).isRequired,
+    onSubmit: PropTypes.func.isRequired,
+};
 
 export default BookEdit;

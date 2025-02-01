@@ -1,19 +1,13 @@
-//import BookList from './BookList';
-
-//import { useState, useContext } from "react";
 import { useState } from "react";
+import PropTypes from "prop-types";  // Import PropTypes
 import BookEdit from "./BookEdit";
-//import BooksContext from '/src/context/books.jsx';
 import useBooksContext from "../hooks/use-books-context";
 
-// function BookShow({book, onDelete, onEdit}) {
 function BookShow({ book }) {
   const [showEdit, setShowEdit] = useState(false);
-  //const {deleteBookById} = useContext(BooksContext);
   const { deleteBookById } = useBooksContext();
 
   const handleDeleteClick = () => {
-    // onDelete(book.id);
     deleteBookById(book.id);
   };
 
@@ -21,10 +15,8 @@ function BookShow({ book }) {
     setShowEdit(!showEdit);
   };
 
-  // const handleSubmit = (id, newTitle) => {
   const handleSubmit = () => {
     setShowEdit(false);
-    // onEdit(id,newTitle);
   };
 
   let content = (
@@ -38,10 +30,9 @@ function BookShow({ book }) {
 
   return (
     <div className="flex flex-col justify-center border-solid bg-blue-500 border-2 rounded-lg shadow-lg border-white shadow-blue-500/50 p-3 m-3">
-      {/* {book.title} */}
-      <div>
+      <div className="flex justify-center">
         <img
-          className="flex rounded-lg mx-3 my-3"
+          className="rounded-lg mx-3 my-3"
           alt="books"
           loading="lazy"
           src={`https://picsum.photos/seed/${book.id}/300/200`}
@@ -49,15 +40,16 @@ function BookShow({ book }) {
       </div>
 
       <div className="bg-green-400 rounded-xl px-1 py-1 mb-3 mx-2 my-2 flex flex-col text-lg justify-center border-4 border-white text-blue-800">
-        <h2 className="text-center text-gray-800 pt-3">Book Title</h2>
+        <h2 className="text-center font-mono text-gray-800 pt-3">Book Title</h2>
+        <div className="text-center font-mono text-xl">
         {content}
+        </div>
       </div>
       <div className="flex justify-center">
         <button className="text-black mr-3 border-4 border-green-500" onClick={handleEditClick}>
           Edit
         </button>
 
-       
         <button className="text-black ml-3 border-4 border-green-500" onClick={handleDeleteClick}>
           Delete
         </button>
@@ -65,5 +57,13 @@ function BookShow({ book }) {
     </div>
   );
 }
+
+// Prop validation
+BookShow.propTypes = {
+  book: PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    title: PropTypes.string.isRequired,
+  }).isRequired,
+};
 
 export default BookShow;

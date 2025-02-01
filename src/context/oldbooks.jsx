@@ -1,10 +1,12 @@
 import { useCallback, useState } from 'react';
 import { createContext } from 'react';
 import axios from 'axios';
+import PropTypes from 'prop-types';
 
 const BooksContext = createContext();
 
 function Provider({ children }) {
+  
     // const [count, setCount] = useState(5);
 
     // const valueToShare = {
@@ -83,6 +85,11 @@ function Provider({ children }) {
     </BooksContext.Provider>
     );
 }
+
+// Add prop validation
+Provider.propTypes = {
+  children: PropTypes.node.isRequired,
+};
 
 export { Provider };
 

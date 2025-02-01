@@ -19,14 +19,17 @@ function BookList(){
         );
     });
 
-    return <div className="flex justify-center text-white">
-        <div className='text-center justify-center pt-3 pb-3'>
-            BookList : {renderedBooks}
+    // return <div className="flex justify-center text-white"> 
+        return <div className="my-5">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+            {renderedBooks}
             <br/>
             {/* Count: {count}
             <button className='text-black ml-3' onClick={incrementCount}>Increment</button> */}
         </div>
         </div>;
+
+        
 }
 
 export default BookList;
